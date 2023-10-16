@@ -17,7 +17,7 @@ def generate_timestamp_filename(extension=".jpg"):
 def get_capture(num_camera=0):
 
     # Inicializa la cámara
-    cap = cv2.VideoCapture(num_camera)  # El número '0' indica la cámara predeterminada (puede ser otra cifra si tienes varias cámaras)
+    cap = cv2.VideoCapture(num_camera)  # El número '0' indica la cámara predeterminada
 
     if not cap.isOpened():
         print("Error: No se puede abrir la cámara.")
@@ -42,6 +42,14 @@ def get_capture(num_camera=0):
 # Ejemplo de uso:
 if __name__ == "__main__":
     save_path = os.path.join('data', 'output')
+    
+    # Verifica si la carpeta 'data' existe, si no, la crea
+    if not os.path.exists('data'):
+        os.makedirs('data')
+
+    # Verifica si la carpeta 'data/output' existe, si no, la crea
+    if not os.path.exists(save_path):
+        os.makedirs(save_path)
 
     filename = generate_timestamp_filename()
     filename = os.path.join(save_path, filename)
